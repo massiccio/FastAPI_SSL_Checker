@@ -30,12 +30,12 @@ Prometheus metrics are exposed at http://172.17.0.1:8000
   
 As an example, the query http://localhost:5000/check/google.com returns
 ```json
-{"subject":"Google LLC","issuer":"Google Trust Services","isValid":true}
+{"subject":"*.google.com","issuer":"Google Trust Services","isValid":true}
 ```
 
 Similarly, the query http://localhost:5000/check/self-signed.badssl.com returns
 ```json
-{"subject":"BadSSL","issuer":"BadSSL","isValid":true}
+{"subject":"*.badssl.com","issuer":"BadSSL","isValid":true}
 ```
 
 
