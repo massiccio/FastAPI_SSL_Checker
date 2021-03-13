@@ -59,9 +59,9 @@ def get_cert_info(cert: crypto.X509, host):
 
         cert_subject = cert.get_subject()
 
-        context['issued_to'] = cert_subject.CN
-        context['issued_o'] = cert_subject.O
-        context['issuer_o'] = cert.get_issuer().organizationName
+        context['issued_to'] = cert_subject.CN # common name
+        context['issued_o'] = cert_subject.O # organization name
+        context['issuer_o'] = cert.get_issuer().O
         context['cert_valid'] = False if cert.has_expired() else True
         context['self_signed'] = True if context['issuer_o'] == context['issued_o'] else False
 
@@ -101,7 +101,7 @@ def check_ssl_url(url: str):
 
     if context:
         return {
-            "subject": context['issued_o'],
+            "subject": context['issued_to'],
             "issuer": context['issuer_o'],
             "isValid": context['cert_valid']
         }
