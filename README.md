@@ -48,10 +48,22 @@ SSL_checks_total{check="not valid",endpoint="expired.badssl.com",self_signed="n/
 
 ## Create Docker image and start the application in a container
 ```bash
-cd scripts
-./service_start.sh
+$cd scripts
+$./service_start.sh
+Building image...
+...
+Starting container...
+INFO:     Started server process [1]
+03/14/2021 10:22:38 AM Started server process [1]
+INFO:     Waiting for application startup.
+03/14/2021 10:22:38 AM Waiting for application startup.
+INFO:     Application startup complete.
+03/14/2021 10:22:38 AM Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
+03/14/2021 10:22:38 AM Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
 ```
-The container application is exposed at port 5000
+
+Note: the application is started on the foreground
 
 ## Start Prometheus
 ```
