@@ -3,4 +3,3 @@ markupsafe
 pyOpenSSL
 fastapi
 uvicorn[standard]
-requests # for testing
