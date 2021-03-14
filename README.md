@@ -1,4 +1,7 @@
 # FastAPI_SSL_Checker
+
+[![Build Status](https://travis-ci.com/massiccio/FastAPI_SSL_Checker.svg?branch=main)](https://travis-ci.com/massiccio/FastAPI_SSL_Checker)
+
 [FastAPI](https://fastapi.tiangolo.com/) Python service that checks if the SSL certificate associated to the given URL is valid.
 *Note: FastAPI requires Python 3.6+*
 
