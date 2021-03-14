@@ -1,5 +1,6 @@
 # FastAPI_SSL_Checker
-[Fast API](https://fastapi.tiangolo.com/) Python service that checks if the SSL certificate associated to the given URL is valid
+[FastAPI](https://fastapi.tiangolo.com/) Python service that checks if the SSL certificate associated to the given URL is valid.
+*Note: FastAPI requires Python 3.6+*
 
 ## Install required packages and run unit tests
 ```bash
