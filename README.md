@@ -1,5 +1,5 @@
 # FastAPI_SSL_Checker
-Fast API Python service that checks if the SSL certificate associated to the given URL is valid
+[Fast API](https://fastapi.tiangolo.com/) Python service that checks if the SSL certificate associated to the given URL is valid
 
 ## Install required packages and run unit tests
 ```bash
@@ -27,17 +27,24 @@ python certificate_checker.py
 ```
 The application start is ready to serve requests at http://localhost:5000/check/<url>
 Prometheus metrics are exposed at http://172.17.0.1:8000
-  
-As an example, the query http://localhost:5000/check/google.com returns
-```json
-{"subject":"*.google.com","issuer":"Google Trust Services","isValid":true}
-```
-
-Similarly, the query http://localhost:5000/check/self-signed.badssl.com returns
-```json
+ 
+### Examples
+```bash
+$curl http://localhost:5000/check/www.google.com
+{"subject":"www.google.com","issuer":"Google Trust Services","isValid":true}
+$curl http://localhost:5000/check/self-signed.badssl.com 
 {"subject":"*.badssl.com","issuer":"BadSSL","isValid":true}
+$curl http://localhost:5000/check/expired.badssl.com 
+{"subject":"*.badssl.com","issuer":"COMODO CA Limited","isValid":false}
 ```
 
+[Prometheus](https://prometheus.io/) metrics are exposed at port 8000 via the [Python client](https://github.com/prometheus/client_python)
+```bash
+$curl -s http://localhost:8000/ |grep SSL_checks_total{
+SSL_checks_total{check="valid",endpoint="www.google.com",self_signed="no"} 1.0
+SSL_checks_total{check="valid",endpoint="self-signed.badssl.com",self_signed="yes"} 3.0
+SSL_checks_total{check="not valid",endpoint="expired.badssl.com",self_signed="n/a"} 2.0
+```
 
 ## Create Docker image and start the application in a container
 ```bash
@@ -58,9 +65,9 @@ cd scripts
 ```
 
 The Prometheus web interface can be accessed at http://172.17.0.1:9090.
-It is already configured to scrape metrics of type SSL_checks from the application
+It is already configured to scrape metrics of type _SSL_checks_ from the application
 
-A Grafana container can be easily started
+A Grafana container can be easily started with the command
 ```bash
 docker run --name grafana -p 3000:3000 grafana/grafana
 ```
