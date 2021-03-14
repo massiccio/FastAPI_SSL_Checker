@@ -19,28 +19,24 @@ def test_strip1():
     assert response.status_code == 200
     res = response.json()
     assert res['isValid'] == True
-    assert res['subject'] != res['issuer']
 
 def test_strip2():
     response = client.get("/check/ google.com")
     assert response.status_code == 200
     res = response.json()
     assert res['isValid'] == True
-    assert res['subject'] != res['issuer']
 
 def test_valid():
     response = client.get("/check/google.com")
     assert response.status_code == 200
     res = response.json()
     assert res['isValid'] == True
-    assert res['subject'] != res['issuer']
 
 def test_self_signed():
     response = client.get("/check/self-signed.badssl.com")
     assert response.status_code == 200
     res = response.json()
     assert res['isValid'] == True
-    assert res['subject'] == res['issuer']
 
 def test_expired():
     response = client.get("/check/expired.badssl.com")
