@@ -53,11 +53,6 @@ cd scripts
 ```
 The container application is exposed at port 5000
 
-If required, another container running Grafana can be easily started
-```bash
-docker run --name grafana -p 3000:3000 grafana/grafana
-```
-
 ## Start Prometheus
 ```
 cd scripts
@@ -66,6 +61,8 @@ cd scripts
 
 The Prometheus web interface can be accessed at http://172.17.0.1:9090.
 It is already configured to scrape metrics of type _SSL_checks_ from the application
+
+## Start Grafana
 
 A Grafana container can be easily started with the command
 ```bash
