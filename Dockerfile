@@ -1,5 +1,5 @@
 # alpine images fail to install the pyOpenSSL module due to some gcc issue
-FROM python:3.8-slim
+FROM python:3.13.0b2-slim
 
 COPY conf/requirements.txt /
 RUN apt-get update \
